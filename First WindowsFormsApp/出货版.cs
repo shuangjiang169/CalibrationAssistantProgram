@@ -21,7 +21,7 @@ namespace First_WindowsFormsApp
 
         public object ValueMaxLeft { get; private set; }
 
-        public 出货版()
+        public 出货版()  
         {
             InitializeComponent();
         }
@@ -377,8 +377,8 @@ namespace First_WindowsFormsApp
                 ////这里修改.c文件里的gpxs KB,和序列号   标志位：//HereAddNewGpxsOfMachine
                 string num = numtextBox.Text;
                 string path1 = CD+@"\\触发版collect1.c";
-                string path2 = @"F:\\在线光谱仪\\20180718\\小糸车灯光谱版本 - 触发版 -beat 1.1 -0705 - 副本\\小糸车灯光谱版本 - 出货版 -beat 1.1 - 副本\\USER\\collect.c";
-                //string path2 = @"F:\\我的winform\\20180718\\小糸车灯光谱版本 - 触发版 -beat 1.1 -0705 - 副本\\小糸车灯光谱版本 - 出货版 -beat 1.1 - 副本\\USER\\collect.c";
+                //string path2 = @"F:\\在线光谱仪\\20180718\\小糸车灯光谱版本 - 触发版 -beat 1.1 -0705 - 副本\\小糸车灯光谱版本 - 出货版 -beat 1.1 - 副本\\USER\\collect.c";
+                string path2 = @"F:\\我的winform\\20180718\\小糸车灯光谱版本 - 触发版 -beat 1.1 -0705 - 副本\\小糸车灯光谱版本 - 出货版 -beat 1.1 - 副本\\USER\\collect.c";
                 string con = "";
 
                 //清空collect文件
