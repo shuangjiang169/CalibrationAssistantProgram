@@ -16,7 +16,7 @@ namespace First_WindowsFormsApp
     public partial class 出货版 : Form
     {
 
-        string gpxs = null;
+        string gpxs = null; 
         string CD = System.IO.Directory.GetCurrentDirectory();
 
         public object ValueMaxLeft { get; private set; }
