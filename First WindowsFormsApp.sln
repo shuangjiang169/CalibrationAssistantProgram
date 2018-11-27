@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "First WindowsFormsApp", "First WindowsFormsApp\First WindowsFormsApp.csproj", "{8A9F9F5E-D24C-4272-B251-683E82206DE6}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "定标参数修改", "定标参数修改\定标参数修改.vdproj", "{16E318AC-F6C5-4732-A632-1F1E1BABECBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A9F9F5E-D24C-4272-B251-683E82206DE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A9F9F5E-D24C-4272-B251-683E82206DE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A9F9F5E-D24C-4272-B251-683E82206DE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A9F9F5E-D24C-4272-B251-683E82206DE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16E318AC-F6C5-4732-A632-1F1E1BABECBC}.Debug|Any CPU.ActiveCfg = Debug
+		{16E318AC-F6C5-4732-A632-1F1E1BABECBC}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D34F62F4-9881-4FD1-84F5-92A48A1FBC1A}
+	EndGlobalSection
+EndGlobal
