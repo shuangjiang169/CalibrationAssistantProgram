@@ -102,14 +102,15 @@ namespace First_WindowsFormsApp
             gpxshandler();
             //这里把修改gpxs数据格式后的文件保存到一个数组
             StreamReader sr4 = new StreamReader(CD+@"\\gpxs1.txt", Encoding.GetEncoding("gb2312"));
-            string strLine;
-    
+
+
+
             while (sr4.EndOfStream == false)
             {
                 try
                 {
-                    strLine = sr4.ReadToEnd();
-                    gpxs = Convert.ToString(strLine);
+                    gpxs = sr4.ReadToEnd();
+                    //gpxs = Convert.ToString(gpxs);
                 }
                 catch (Exception ex)
                 {
@@ -117,40 +118,45 @@ namespace First_WindowsFormsApp
             }
             sr4.Dispose();
 
+            //除去gpxs里的换行符
+             gpxs = gpxs.Replace("\n", string.Empty);
 
-           
 
             //这里修改.c文件里的gpxs KB,   标志位：//HereAddNewGpxsOfMachine
             string num = numtextBox.Text;
-            string path1 = CD+@"\\出货版collect1.c";
-            string path2 = @"F:\\在线光谱仪\\20180718\小糸车灯光谱版本 - 出货版 -beat 1.1 -614\\小糸车灯光谱版本 - 出货版 -beat 1.1 - 副本\\USER\\collect.c";
+            //string path1 = CD+@"\\出货版collect1.c";
+            //string path2 = @"F:\\在线光谱仪\\20180718\小糸车灯光谱版本 - 出货版 -beat 1.1 -614\\小糸车灯光谱版本 - 出货版 -beat 1.1 - 副本\\USER\\collect.c";
             //string path2 = @"F:\\我的winform\\20180718\\小糸车灯光谱版本 - 出货版 -beat 1.1 -614\\小糸车灯光谱版本 - 出货版 -beat 1.1 - 副本\\USER\\collect.c";
+            string path1 = @"F:\\我的winform\\collect.c";
             string con = "";
 
-            //清空collect文件
-            FileStream stream2 = File.Open(path2, FileMode.OpenOrCreate, FileAccess.Write);
-            stream2.Seek(0, SeekOrigin.Begin);
-            stream2.SetLength(0);
-            stream2.Close();
+            ////清空collect文件
+            //FileStream stream2 = File.Open(path2, FileMode.OpenOrCreate, FileAccess.Write);
+            //stream2.Seek(0, SeekOrigin.Begin);
+            //stream2.SetLength(0);
+            //stream2.Close();
 
 
             FileStream fs5 = new FileStream(path1, FileMode.Open, FileAccess.Read);
             StreamReader sr5 = new StreamReader(path1, Encoding.GetEncoding("gb2312"));
             con = sr5.ReadToEnd();
-           
+
             //修改gpxs
-            con = con.Replace("HereAddNewGpxsOfMachine", num+ "号的gpxs\r\n" + gpxs+ "\r\n//HereAddNewGpxsOfMachine");
+            //con = con.Replace("HereAddNewGpxsOfMachine", num+ "号的gpxs\r\n" + gpxs+ "\r\n//HereAddNewGpxsOfMachine");
+            con = con.Replace("//HereAddNewGpxsOfMachineA", "/*");
+            con = con.Replace("//HereAddNewGpxsOfMachineB", "*/\r//gpxs,MachineNum:" + num + "\r\n"+ "//HereAddNewGpxsOfMachineA\r" + gpxs + "\r//HereAddNewGpxsOfMachineB");
             //替换K,B系数
-            string numK = KtextBox.Text;
+            string numK = KtextBox.Text;    
             string numB = BtextBox.Text;
-            Regex regex1 = new Regex(@"pixel\=4\.0141\*\(380\+j\)\-1002\.4");
-            con = regex1.Replace(con, "pixel=" + numK + "*(380+j)" + numB);
+            con = con.Replace("//HereAddNewFormulaOfMachine", "/*");
+            con = con.Replace("//pixel=K*(380+j)-B", "*/\r\n" + "//HereAddNewFormulaOfMachine\r\n" + "pixel=" + numK + "*(380+j)" + numB + ";  //" + num + "\r\n//pixel=K*(380+j)-B");
+
             MessageBox.Show("KB修改成功！");
 
 
             sr5.Close();
             fs5.Close();
-            FileStream fs6 = new FileStream(path2, FileMode.Open, FileAccess.Write);
+            FileStream fs6 = new FileStream(path1, FileMode.Open, FileAccess.Write);
             StreamWriter sw5 = new StreamWriter(fs6);
             sw5.Write(con);
             sw5.Close();
@@ -165,9 +171,10 @@ namespace First_WindowsFormsApp
 
           
             string num = numtextBox.Text;
-            string path1 = @"C:\\Users\Administrator\\Desktop\\20180828调试软件\\gpxs.txt";
-            //string path1 = @"F:\\我的winform\\gpxs.txt";
-            string path2 = CD+@"\\gpxs1.txt";
+            //string path1 = @"C:\\Users\Administrator\\Desktop\\20180828调试软件\\gpxs.txt";
+            string path1 = @"F:\\我的winform\\gpxs.txt";
+            string path2 = @"F:\\我的winform\\gpxs1.txt";
+            //string path2 = CD+@"\\gpxs1.txt";
             string con1 = "";
 
             FileInfo fi = new FileInfo(path2);
@@ -180,8 +187,11 @@ namespace First_WindowsFormsApp
             FileStream fs2 = new FileStream(path1, FileMode.Open, FileAccess.Read);
             StreamReader sr1 = new StreamReader(fs2);
             con1 = sr1.ReadToEnd();
-            con1 = con1.Replace("\r", ",");
+            con1 = con1.Replace("\n", ",");
             con1 = con1.Remove(con1.LastIndexOf(","), 1);
+
+
+
             sr1.Close();
             fs2.Close();
             FileStream fs3 = new FileStream(path2, FileMode.Open, FileAccess.Write);
